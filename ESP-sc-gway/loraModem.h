@@ -98,15 +98,16 @@ int freqs [] = {
 // AU915-928
 int freqs [] = {
 	// Uplink
-	903900000, 									// Channel 0, SF7BW125 to SF10BW125 primary
-	904100000, 									// Ch 1, SF7BW125 to SF10BW125
-	904300000, 									// Ch 2, SF7BW125 to SF10BW125
-	904500000, 									// Ch 3, SF7BW125 to SF10BW125
-	904700000, 									// Ch 4, SF7BW125 to SF10BW125
-	904900000, 									// Ch 5, SF7BW125 to SF10BW125
-	905100000, 									// Ch 6, SF7BW125 to SF10BW125
-	905100000, 									// Ch 7, SF7BW125 to SF10BW125
-	904600000 									// Ch 8, SF8BW500 
+	// 903900000, 									// Channel 0, SF7BW125 to SF10BW125 primary
+	// 904100000, 									// Ch 1, SF7BW125 to SF10BW125
+	// 904300000, 									// Ch 2, SF7BW125 to SF10BW125
+	// 904500000, 									// Ch 3, SF7BW125 to SF10BW125
+	// 904700000, 									// Ch 4, SF7BW125 to SF10BW125
+	// 904900000, 									// Ch 5, SF7BW125 to SF10BW125
+	// 905100000, 									// Ch 6, SF7BW125 to SF10BW125
+	// 905100000, 									// Ch 7, SF7BW125 to SF10BW125
+	// 904600000 									// Ch 8, SF8BW500 
+	923800000,		// 1 channel
 	// Downlink
 	// We should specify downlink frequencies here											
 												// SFxxxBW500
@@ -144,16 +145,23 @@ unsigned long msgTime=0;
 unsigned long hopTime=0;
 unsigned long detTime=0;
 
-#if _PIN_OUT==1
-// ----------------------------------------------------------------------------
+#if _PIN_OUT==1   // Modified PDAControl 915mHz 2018
 // Definition of the GPIO pins used by the Gateway for Hallard type boards
 //
 struct pins {
-	uint8_t dio0=15;	// GPIO15 / D8. For the Hallard board shared between DIO0/DIO1/DIO2
-	uint8_t dio1=15;	// GPIO15 / D8. Used for CAD, may or not be shared with DIO0
-	uint8_t dio2=15;	// GPIO15 / D8. Used for frequency hopping, don't care
-	uint8_t ss=16;		// GPIO16 / D0. Select pin connected to GPIO16 / D0
-	uint8_t rst=0;		// GPIO 0 / D3. Reset pin not used	
+//	uint8_t dio0=15;	// GPIO15 / D8. For the Hallard board shared between DIO0/DIO1/DIO2
+//	uint8_t dio1=15;	// GPIO15 / D8. Used for CAD, may or not be shared with DIO0
+//	uint8_t dio2=15;	// GPIO15 / D8. Used for frequency hopping, don't care
+//	uint8_t ss=16;		// GPIO16 / D0. Select pin connected to GPIO16 / D0
+//	uint8_t rst=0;		// GPIO 0 / D3. Reset pin not used
+
+  uint8_t dio0=5; // GPIO15 / D8. For the Hallard board shared between DIO0/DIO1/DIO2
+  uint8_t dio1=4; // GPIO15 / D8. Used for CAD, may or not be shared with DIO0
+  uint8_t dio2=2; // GPIO15 / D8. Used for frequency hopping, don't care
+  uint8_t ss=15;    // GPIO16 / D0. Select pin connected to GPIO16 / D0
+  uint8_t rst=16;   // GPIO 0 / D3. Reset pin not used  
+  
+  
 	// MISO 12 / D6
 	// MOSI 13 / D7
 	// CLK  14 / D5

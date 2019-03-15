@@ -27,11 +27,11 @@
 // Also this is the initial value of debug parameter. 
 // The value can be changed using the admin webserver
 // For operational use, set initial DEBUG vaulue 0
-#define DEBUG 1
+#define DEBUG 0
 
 // Debug message will be put on Serial is this one is set.
 // If set to 0, not USB Serial prints are done
-// Set to 1 it will prinr all user level messages (with correct debug set)
+// Set to 1 it will print all user level messages (with correct debug set)
 // If set to 2 it will also print interrupt messages (not recommended)
 #define DUSB 1
 
@@ -41,9 +41,9 @@
 // Normally, value 0 is a good default.
 #define _SPIFF_FORMAT 0
 
-// Define the LoRa Frequncy band that is used. TTN Supported values are 925MHz, 868MHz and 433MHz.
+// Define the LoRa Frequncy band that is used. TTN Supported values are 915MHz, 868MHz and 433MHz.
 // So supported values are: 433 868 915
-#define _LFREQ 868
+#define _LFREQ 915
 
 // The spreading factor is the most important parameter to set for a single channel
 // gateway. It specifies the speed/datarate in which the gateway and node communicate.
@@ -61,7 +61,7 @@
 // continuous listen mode.
 // Using this function means that we HAVE to use more dio pins on the RFM95/sx1276
 // device and also connect enable dio1 to detect this state. 
-#define _CAD 1
+#define _CAD 0
 
 // Definitions for the admin webserver.
 // A_SERVER determines whether or not the admin webpage is included in the sketch.
@@ -94,7 +94,7 @@
 // 1= Keep track of messages statistics, number determined by MAX_STAT
 // 2= Option 1 + Keep track of messages received PER each SF (default)
 // 3= See Option 2, but with extra channel info (Do not use when no Hopping is done)
-#define STATISTICS 3
+#define STATISTICS 2
 
 // Maximum number of statistics records gathered. 20 is a good maximum (memory intensive)
 #define MAX_STAT 20
@@ -135,7 +135,7 @@
 // OLED==0; No OLED display connected
 // OLED==1; 0.9 Oled Screen based on SSD1306
 // OLED==2;	1"3 Oled screens for Wemos, 128x64 SH1106
-#define OLED 2
+#define OLED 0
 
 
 // Define whether we want to manage the gateway over UDP (next to management 
@@ -176,7 +176,8 @@
 // MQTT definitions, these settings should be standard for TTN
 // and need not changing
 #define _TTNPORT 1700						// Standard port for TTN
-#define _TTNSERVER "router.eu.thethings.network"
+//#define _TTNSERVER "router.eu.thethings.network"		// Europe 868
+#define _TTNSERVER "router.as2.thethings.network"		// Asia 923-925 MHz
 
 // If you have a second back-end server defined such as Semtech or loriot.io
 // your can define _THINGPORT and _THINGSERVER with your own value.
@@ -201,8 +202,8 @@
 
 // ntp
 // Please add daylight saving time to NTP_TIMEZONES when desired
-#define NTP_TIMESERVER "nl.pool.ntp.org"	// Country and region specific
-#define NTP_TIMEZONES	2					// How far is our Timezone from UTC (excl daylight saving/summer time)
+#define NTP_TIMESERVER "tw.pool.ntp.org"	// Country and region specific
+#define NTP_TIMEZONES	8					// How far is our Timezone from UTC (excl daylight saving/summer time)
 #define SECS_IN_HOUR	3600
 #define NTP_INTR 0							// Do NTP processing with interrupts or in loop();
 
